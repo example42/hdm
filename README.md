@@ -1,6 +1,6 @@
 # Hiera Data Manager
 
-Hiera Data Manager, aka HDM, is a webfrontend for vizualising and managing Hiera data.
+Hiera Data Manager, aka HDM, is a webfrontend for visualising and managing Hiera data.
 
 The data is able to be viewed and modified by a person:
 * without knowledge on Git
@@ -36,7 +36,7 @@ Now you can see all hiera keys a node has within the environment hiera data:
 
 ![hiera keys](/docs/hdm/04_HDM_node_data.png)
 
-When selecting a key we show the hierachies and vizualize whether a hierarchy has data for a key and which one is the default:
+When selecting a key we show the hierachies and visualize whether a hierarchy has data for a key and which one is the default:
 
 ![hiera data](/docs/hdm/05_HDM_node_data_view.png)
 
@@ -45,7 +45,7 @@ HDM writes the data back to a file.
 
 ## Development Setup
 
-You need a Puppet Master with PupeptDB. The most simple approach is to use our PSICK vagrant environemnts.
+You need a Puppet Master with PuppetDB. The most simple approach is to use our PSICK vagrant environments.
 
 1. Preparation (on Workstation)
 
@@ -62,7 +62,7 @@ If you want to connect mupltiple machines you want to install vagrant hostmanage
     # the plugin will add ip/hostname to your local machine /etc/hosts file)
     vagrant plugin install vagrant-hostmanager
 
-If any of the commands cuase errors, please verify that you are using system ruby.
+If any of the commands cause errors, please verify that you are using system ruby.
 If you are using `rvm` you can check with `rvm list` and switch to system ruby running `rvm use system`
 
 2. Use vagrant from PSICK repo
@@ -77,20 +77,20 @@ Now we need to prepare the local Ruby environment.
 Usually you will need ruby and the gems command.
 If you have never installed bundler, please do so first.
 
-The install the Ruby GEMS into the PSICK project:
+Then install the Ruby GEMS into the PSICK project:
 
 ```
     gem install bundler
     bundle install --path vendor
 ```
 
-Next we need to install the rewuired Puppet Modules:
+Next we need to install the rewired Puppet Modules:
 
 ```
     bundle exec r10k puppetfile install -v
 ```
 
-Now you can continue with the vargant PSICK envuironment.
+Now you can continue with the vagrant PSICK environment.
 
     cd psick/vagrant/environments/pe
     # Start the puppet. It will download PE tarball, install it and run puppet agent
@@ -104,7 +104,7 @@ Note 1: The first time a new PE tarball is downloaded from the net you may have 
 
 It looks like the newly downloaded PE tarball, placed in the `.pe_build` directory of this Vagrant environment, is not immediately available on the VM under its `/vagrant` directory.
 
-The whole provisioning might take a very lomg time and needs to be done everytime when you create the VM new.
+The whole provisioning might take a very long time and needs to be done everytime when you create the VM.
 Once you have a VM running, you can more easily save (suspend) and restore your vm using vagrant:
 
 ```
@@ -129,8 +129,6 @@ Next the puppet access token is required:
 
 If this produces an error like `Unhandled exception: locale::facet::_S_create_c_locale name not valid` you want to check your locale settings by running `locale`.
 When running on a macOS System you have to unset the LC\_CTYPE local: `unset LC_CTYPE`
-
-If the error still occurs, check your locale and switch to en\_US.UTF-8
 
 ```
     export LANG=en_US.UTF-8
@@ -191,13 +189,13 @@ You can use our start shell script `bash ./start.sh` or you can run the followin
     # Where can HDM find the Puppet environemnts directory?
     export HDM__CONFIG_DIR="/etc/puppetlabs/code"
 
-    # At the moment having PuppetDB is a hard requirement. HDM gets list of Puppet environments and nodes from PuppetDB
+    # At the moment having PuppetDB is a hard requirement. HDM gets a list of Puppet environments and nodes from PuppetDB
     export HDM__PUPPET_DB__ENABLED=true
     # If you are using a self signed certificate, you need to set:
     export HDM__PUPPET_DB__SELF_SIGNED_CERT=true
     # URL of PuppetDB service - we prefer https
     export HDM__PUPPET_DB__SERVER="https://localhost:8081"
-    # In Puppet Enterprise one can use a token to access PuppetDB. In Puppet Open SOurce you need to configre a SSL certificate and add it to PuppetDB whitelisted clients
+    # In Puppet Enterprise one can use a token to access PuppetDB. In Puppet Open Source you need to configure an SSL certificate and add it to PuppetDB whitelisted clients
     export HDM__PUPPET_DB__TOKEN=$(cat ~/.puppetlabs/token)
 
     # HDM can now run in read-only mode:
@@ -221,7 +219,7 @@ Puppet Master:
 
 Login: admin/puppetlabs
 
-To prevent this whole setup to be done any time, you can suspend and resume the VM anytime.
+To prevent this whole setup to be done every time, you can suspend and resume the VM at any time.
 Please keep in mind that you must ensure to use sytem ruby whenever you run a vagrant command.
 
 ## Production Setup
