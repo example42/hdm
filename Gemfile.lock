@@ -218,7 +218,7 @@ GEM
     mime-types-data (3.2019.1009)
     mimemagic (0.3.3)
     mini_mime (1.0.1)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.0)
     mini_racer (0.2.8)
       libv8 (>= 6.9.411)
     minitest (5.13.0)
@@ -227,8 +227,9 @@ GEM
     multi_xml (0.6.0)
     nenv (0.3.0)
     nio4r (2.3.1)
-    nokogiri (1.10.8)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -262,6 +263,7 @@ GEM
       puppet
     puppetdb-ruby (1.2.0)
       httparty
+    racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.6.5)
       rack
