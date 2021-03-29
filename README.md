@@ -12,15 +12,18 @@ A fresh installation needs an admin which has to be created first with the WebGU
 
 Please make sure that you have installed the right Ruby version (2.5.8) before you start your work. https://rvm.io is a good tool to do that.
 
-In case you are using an Apple M1 Chip you might run into trouble building 
+In case you are using an Apple M1 Chip you might run into trouble building
 Ruby. A work around for that is using the command `rvm install 2.5.8 --with-cflags="-Wno-error=implicit-function-declaration"`
 
 - Clone the repository and `cd` into the directory.
 - Do `bundle config set --local path 'vendor/bundle'`
 - Do `bundle install`.
-- Install nodejs `brew install node@14` (https://brew.sh)
+- Install nodejs
+  - `brew install node@14` (https://brew.sh)
+  - or `sudo port install nmp6 yarn`
   - node 15 does not work yet
 - We need `yarn`, install it: `npm install -g yarn`
+
 - Install the needed packages: `yarn install --check-files`
 - Create the database with `bundle exec rails db:create`
 - Run the migrations with `bundle exec rails db:migrate`
