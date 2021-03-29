@@ -35,3 +35,29 @@ You can reset your database anytime with a `bundle exec rails db:reset`.
 
 The example development puppet configuration can be found in the directory
 `test/fixtures/files/puppet`
+
+## Docker
+
+### Build
+
+There is a Dockerfile to build a container. This can be done with:
+
+    cd hdm
+    docker build -t hdm .
+
+### Docker Compose
+
+For docker-compose see `docker-compose.yaml` or use this example:
+
+    ---
+    version: '3.5'
+    services:
+      hdm:
+        image: example42/hdm:latest
+        container_name: hdm
+        volumes:
+          # keep db outside of container
+          - /srv/data/hdm/db:/hdm/data/db
+        ports:
+          - 3000:3000
+        restart: unless-stopped
