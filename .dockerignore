@@ -1,0 +1,7 @@
+.bundle/
+.git/
+.gitignore
+vendor/
+.dockerignore
+docker-compose.yml
+Gemfile.lock
