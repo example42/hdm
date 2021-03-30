@@ -10,10 +10,10 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 ADD Gemfile $APP_HOME/
-RUN bundle config set --local path 'vendor/bundle' && bundle config set --local without 'development test' && bundle install
-RUN yarn install --check-files
+RUN bundle config set --local path 'vendor/bundle' && bundle install
 
 ADD . $APP_HOME
+RUN yarn install --check-files
 
 EXPOSE 3000
 
