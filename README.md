@@ -17,6 +17,7 @@ Ruby. A work around for that is using the command `rvm install 2.5.8 --with-cfla
 
 - Clone the repository and `cd` into the directory.
 - Do `bundle config set --local path 'vendor/bundle'`
+- Do `bundle config set --local with 'development'`
 - Do `bundle install`.
 - Install nodejs
   - `brew install node@14` (https://brew.sh)
