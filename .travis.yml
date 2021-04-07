@@ -1,5 +1,8 @@
 language: ruby
-dist: bionic
+dist: focal
+rvm: 2.5.8
+node_js: 14
+
 cache:
   bundler: true
   yarn: true
