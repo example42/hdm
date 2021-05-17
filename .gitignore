@@ -33,6 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials.yml.enc
 
 /public/packs
 /public/packs-test
@@ -47,3 +48,5 @@ yarn-debug.log*
 # nodejs and yarn
 package-lock.json
 
+# HDM Settings
+/config/hdm.yml

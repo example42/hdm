@@ -50,7 +50,23 @@ Setting a localw can be done by running
 
     export LANG=en_US.UTF-8
 
+## Mock certificate information
+
+Create a new external fact file:
+
+    mkdir -p /etc/puppetlabs/facter/facts.d
+    echo -e "role=puppet\nzone=pe\nenv=devel\ndatacenter=vagrant\n" > /etc/puppetlabs/facter/facts.d/hdm.txt
+
+Now run puppet agent to add new facts to puppetdb: `puppet agent --test`
+
 ## HDM
+
+Add required packages
+
+    yum install -y gcc-c++ sqlite-devel zlib-devel
+    wget https://kojipkgs.fedoraproject.org//packages/sqlite/3.8.11/1.fc21/x86_64/sqlite-devel-3.8.11-1.fc21.x86_64.rpm
+    wget https://kojipkgs.fedoraproject.org//packages/sqlite/3.8.11/1.fc21/x86_64/sqlite-3.8.11-1.fc21.x86_64.rpm
+    yum install -y sqlite-3.8.11-1.fc21.x86_64.rpm sqlite-devel-3.8.11-1.fc21.x86_64.rpm
 
 Now one can clone the hdm repository:
 
@@ -58,23 +74,19 @@ Now one can clone the hdm repository:
     git clone https://github.com/example42/hdm.git
     cd hdm/
 
-add required packages
-
-    yum install -y gcc-c++ sqlite-devel zlib-devel
-
 install gems
 
     /opt/puppetlabs/puppet/bin/gem install bundler
     /opt/puppetlabs/puppet/bin/bundle install --path vendor
 
-
 install nodejs and yarn
 
-    curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash
+    curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash
     sudo yum install -y nodejs
     curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
     sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
     sudo yum install -y yarn
+    yarn install --check-files
 
 Create the database with:
 
@@ -82,9 +94,21 @@ Create the database with:
     bundle exec rails db:migrate
     bundle exec rails db:seed
 
+Configure hdm:
+
+    cp config/hdm.yml.template config/hdm.yml
+
+Edit config file:
+
+    development:
+      read_only: false
+      puppet_db:
+        server: "http://localhost:8080"
+      config_dir: "/etc/puppetlabs/code"
+
 Start the webserver with:
 
-    bundle exec rails server
+    bundle exec rails server -b 0.0.0.0
 
 Login:
 
@@ -94,5 +118,7 @@ Login: admin
 Password: puppetlabs
 
 HDM: `http://puppet.pe.psick.io:3000`
+
+if this does not work you can use localhost: `http://localhost:3000`
 
 
