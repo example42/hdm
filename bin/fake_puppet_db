@@ -6,4 +6,12 @@
 # end
 require_relative '../test/support/fake_puppet_db'
 
-Rack::Server.start(app: FakePuppetDB.new, Host: "localhost", Port: 8083)
+Rack::Server.start(
+  app: FakePuppetDB.new,
+  Host: 'localhost',
+  Port: 8083,
+  pid: './tmp/pids/fake_pdb.pid',
+  # puma would create two pid files, one "server.pid" and one for the pid parameter.
+  # so try to use wberick here
+  server: 'webrick',
+)

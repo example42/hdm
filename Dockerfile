@@ -9,10 +9,12 @@ ENV APP_HOME /hdm
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-ADD Gemfile $APP_HOME/
+COPY Gemfile $APP_HOME/
 RUN bundle config set --local path 'vendor/bundle' && bundle install
 
-ADD . $APP_HOME
+COPY . $APP_HOME
+COPY config/hdm.yml.template $APP_HOME/config/hdm.yml
+
 RUN yarn install --check-files
 
 EXPOSE 3000
