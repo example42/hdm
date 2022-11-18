@@ -1,3 +1,7 @@
+
+THIS PROJECT HAS BEEN MOVED TO https://github.com/betadots/hdm.git
+
+
 # HDM - Hiera Data Manager
 
 Copyright 2021 example42 GmbH
